@@ -18,7 +18,7 @@ using namespace std;
 	 for (int i = 0; i < lb; i++)b[i] = a[i];
 	 for (int i = 0, j = 0, k = 0; j<lb;)a[i++]= (lc<=k || (b[j] <= c[k])) ? b[j++] : c[k++];
 	 delete[] b;
-	 
+	return; 
  }
 
 template <typename T>

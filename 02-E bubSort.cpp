@@ -13,6 +13,7 @@ void bubSort(T * A, int lo, int hi){
 	for (int last = --hi; hi >lo; hi=last)
 		for (int j = last=lo; j < hi; j++)
 			if (A[j + 1] < A[j]) { swap(A[j + 1], A[j]); last = j; }//(last,hi] is sorted
+return;
 }
 
 int main() {

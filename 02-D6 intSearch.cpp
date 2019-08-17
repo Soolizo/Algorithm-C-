@@ -4,11 +4,12 @@ using namespace std;
 
 
 template <typename T>
-T intSearch(T * A, T e,int lo, int hi) {
-	if (hi - lo < 1) return --lo;
-	int mi = lo+((hi - lo) * (e - A[lo]) / (A[hi] - A[lo]));
-	if (e < A[mi]) intSearch(A, e, lo, mi);
-	else intSearch(A, e, mi+1, hi);//Be careful about this "+1"!
+int intSearch(T* A, T const& e, int lo, int hi) {
+	for (; lo < hi;) {
+		int mi = (((e - A[lo]) / (A[hi] - A[lo])) * (hi - lo)) + lo;
+		(e < A[mi]) ? hi = mi : lo = mi + 1;
+	}
+	return --lo;
 }
 
 int main() {

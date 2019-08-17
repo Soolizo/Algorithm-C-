@@ -4,12 +4,14 @@ using namespace std;
 
 
 template <typename T>
-T biSearch(T * A, T e,int lo, int hi) {
-	if (hi - lo < 1) return --lo;
-	int mi = (hi + lo) >> 1;
-	if (e < A[mi]) biSearch(A, e, lo, mi);
-	else biSearch(A, e, mi+1, hi);//Be careful about this "+1"!
+int biSearch(T* A, T const& e, int lo, int hi) {
+	for (; lo < hi;) {
+		int mi = (hi + lo) >> 1;
+		(e < A[mi]) ? hi = mi : lo = mi + 1;
+	}
+return --lo;
 }
+
 
 int main() {
 	int A[] = { 1,2,3,3,3,3,3,3,4,5,6,7,8 };
