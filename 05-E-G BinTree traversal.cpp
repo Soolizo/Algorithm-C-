@@ -1,5 +1,6 @@
 ﻿#include<iostream>
 #include<stack>
+#include<queue>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ public:
 	void travIn();
 	void travAfter();
 	void travAfter1();
+	void travLevel();
 };
 
 BinNode* BinNode::insertLCwith( BinNode* a) {
@@ -66,7 +68,7 @@ void BinNode:: travAfter() {
 	BinNode* x = this;
 	stack<BinNode*> s1;
 	stack<BinNode*> s2;
-	s1.push(x);
+	if (x)s1.push(x);
 	while (!s1.empty()) {
 		x = s1.top();
 		s1.pop();
@@ -102,6 +104,16 @@ void BinNode::travAfter1() {
 	}
 }
 
+void BinNode::travLevel() {
+	queue<BinNode*> q;
+	q.push(this);
+	while (!q.empty()) {
+		BinNode* x = q.front(); q.pop(); cout << x->data << endl;
+		if (x->lc) q.push(x->lc);
+		if (x->rc) q.push(x->rc);
+	}
+}
+
 int main() {
 	BinNode a(1);
 	BinNode b(2);
@@ -114,6 +126,13 @@ int main() {
 	b.insertLCwith (&d);
 	b.insertRCwith (&e);
 	c.insertRCwith (&f);
+	/*
+	    A
+	   / \
+	  B   C
+	 / \   \
+	D   E   F
+	*/
 
 	cout << "travPre"<<endl;
 	a.travPre();
@@ -126,6 +145,9 @@ int main() {
 
 	cout << "travAfter1" << endl;
 	a.travAfter1();
+
+	cout << "travLevel" << endl;
+	a.travLevel();
 
 	return 0;
 }
